@@ -1,43 +1,42 @@
-import React from "react";
-import { Chessboard as ReactChessboard } from "react-chessboard";
-import "../css/analysis.css";
+import { useEffect, useState } from "react";
+import { Chess } from "chess.js";
+import AnalysisBoard from "../pages/analysis-all";
+import getCustomPieces from "./pieces";
+import { handleMoveSounds, playGameStartSound } from "./sound";
 
-type ChessboardProps = {
-  position: string;
-  onPieceDrop: (sourceSquare: string, targetSquare: string) => boolean;
-  boardOrientation: "white" | "black";
-  customPieces: any;
-};
+export default function ChessGameAnalysis() {
+  const [game, setGame] = useState(new Chess());
+  const [fen, setFen] = useState(game.fen());
+  const customPieces = getCustomPieces();
 
-const AnalysisBoard: React.FC<ChessboardProps> = ({
-  position,
-  onPieceDrop,
-  boardOrientation,
-  customPieces,
-}) => {
+  useEffect(() => {
+    setFen(game.fen());
+    playGameStartSound();
+  }, []);
+
+  const onDrop = (sourceSquare: string, targetSquare: string) => {
+    const newGame = new Chess(game.fen());
+    const move = newGame.move({ from: sourceSquare, to: targetSquare });
+
+    if (move) {
+      setGame(newGame);
+      setFen(newGame.fen());
+      handleMoveSounds(newGame, move);
+      return true;
+    }
+
+    handleMoveSounds(newGame, null);
+    return false;
+  };
+
   return (
-    <div className="chessboard-container-analysis">
-      <div className="react-chessboard-wrapper-analysis">
-        <ReactChessboard
-          position={position}
-          onPieceDrop={onPieceDrop}
-          boardOrientation={boardOrientation}
-          customPieces={customPieces}
-          customBoardStyle={{
-            borderRadius: "5px",
-            overflow: "hidden",
-            boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-          }}
-          customDarkSquareStyle={{
-            backgroundColor: "rgb(119, 149, 86)",
-          }}
-          customLightSquareStyle={{
-            backgroundColor: "rgb(237, 237, 209)",
-          }}
-        />
-      </div>
+    <div>
+      <AnalysisBoard
+        position={fen}
+        onPieceDrop={onDrop}
+        boardOrientation="white"
+        customPieces={customPieces}
+      />
     </div>
   );
-};
-
-export default AnalysisBoard;
+}

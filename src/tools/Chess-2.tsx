@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { Chess } from "chess.js";
-import AnalysisBoard from "../tools/analysis";
-import getCustomPieces from "../tools/pieces";
-import { handleMoveSounds, playGameStartSound } from "../tools/sound";
+import Chessboard2 from "../pages/chessboard-2";
+import getCustomPieces from "./pieces";
+import { handleMoveSounds, playGameStartSound } from "./sound";
 
-export default function ChessGameAnalysis() {
+export default function ChessGame2() {
   const [game, setGame] = useState(new Chess());
   const [fen, setFen] = useState(game.fen());
   const customPieces = getCustomPieces();
@@ -31,7 +31,7 @@ export default function ChessGameAnalysis() {
 
   return (
     <div>
-      <AnalysisBoard
+      <Chessboard2
         position={fen}
         onPieceDrop={onDrop}
         boardOrientation="white"

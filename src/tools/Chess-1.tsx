@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import Chessboard1 from "../tools/chessboard-1";
-import getCustomPieces from "../tools/pieces";
-import { handleMoveSounds, playGameStartSound } from "../tools/sound";
-import GameLogic from "../tools/GameLogic";
+import Chessboard1 from "../pages/chessboard-1";
+import getCustomPieces from "./pieces";
+import { handleMoveSounds, playGameStartSound } from "./sound";
+import GameLogic from "./GameLogic";
 
 export default function ChessGame1() {
   const [gameLogic, setGameLogic] = useState(new GameLogic());

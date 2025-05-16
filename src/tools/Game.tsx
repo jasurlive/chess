@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Chess } from "chess.js";
-import Chessboard from "./chessboard";
+import Chessboard from "../pages/chessboard";
 import getCustomPieces from "./pieces";
 import { handleMoveSounds, playGameStartSound } from "./sound";
 

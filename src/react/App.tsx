@@ -1,12 +1,12 @@
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import { FaChess, FaChessKing, FaGlobe, FaHome } from "react-icons/fa";
 import { SiLichess } from "react-icons/si";
-import ChessGame1 from "../pages/Chess-1";
-import ChessGame2 from "../pages/Chess-2";
+import ChessGame1 from "../tools/Chess-1";
+import ChessGame2 from "../tools/Chess-2";
 import "../css/dom-menu.css";
 import "../css/App.css";
 import HomePage from "../pages/HomePage";
-import AnalysisBoard from "../pages/AnalysisPage";
+import AnalysisBoard from "../tools/Analysis";
 import { FaH } from "react-icons/fa6";
 
 function Chess1() {
