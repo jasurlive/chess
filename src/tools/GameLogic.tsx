@@ -41,7 +41,18 @@ export default class GameLogic {
     to: string,
     promotion: "q" | "r" | "b" | "n" = "q"
   ): MoveResult {
-    const move = this.game.move({ from, to, promotion });
+    let move: Move | null = null;
+    try {
+      move = this.game.move({ from, to, promotion });
+    } catch (e) {
+      // Invalid move, return immediately
+      return {
+        valid: false,
+        move: null,
+        updatedFen: this.game.fen(),
+        gameStatus: this.evaluateGameStatus(),
+      };
+    }
 
     const gameStatus = this.evaluateGameStatus();
 

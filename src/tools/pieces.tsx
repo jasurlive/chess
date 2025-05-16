@@ -1,12 +1,27 @@
 import React, { useMemo } from "react";
 
-const pieces = ["wP", "wN", "wB", "wR", "wQ", "wK", "bP", "bN", "bB", "bR", "bQ", "bK"];
+const pieces = [
+  "wP",
+  "wN",
+  "wB",
+  "wR",
+  "wQ",
+  "wK",
+  "bP",
+  "bN",
+  "bB",
+  "bR",
+  "bQ",
+  "bK",
+];
 
 const getCustomPieces = () => {
   return useMemo(() => {
-    const pieceComponents: { [key: string]: React.FC<{ squareWidth: number }> } = {};
+    const pieceComponents: {
+      [key: string]: React.FC<{ squareWidth: number }>;
+    } = {};
 
-    pieces.forEach(piece => {
+    pieces.forEach((piece) => {
       pieceComponents[piece] = ({ squareWidth }: { squareWidth: number }) => (
         <div
           style={{
