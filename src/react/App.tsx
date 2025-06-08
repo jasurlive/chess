@@ -6,7 +6,7 @@ import ChessGame2 from "../tools/Chess-2";
 import "../css/dom-menu.css";
 import "../css/App.css";
 import HomePage from "../pages/HomePage";
-import AnalysisBoard from "../tools/Analysis-new";
+import AnalysisBoard from "../tools/Analysis";
 
 function Chess1() {
   return (
