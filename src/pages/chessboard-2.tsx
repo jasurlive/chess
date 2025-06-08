@@ -7,6 +7,9 @@ type ChessboardProps = {
   onPieceDrop: (sourceSquare: string, targetSquare: string) => boolean;
   boardOrientation: "white" | "black";
   customPieces: any;
+  onSquareClick?: (square: string) => void;
+  customSquareStyles?: Record<string, React.CSSProperties>;
+  turn?: "white" | "black"; // Add this prop
 };
 
 const ChessBoard2: React.FC<ChessboardProps> = ({
@@ -14,22 +17,20 @@ const ChessBoard2: React.FC<ChessboardProps> = ({
   onPieceDrop,
   boardOrientation,
   customPieces,
+  onSquareClick,
+  customSquareStyles = {},
+  turn = "white", // Default to white if not provided
 }) => {
-  const [isWhiteTurn, setIsWhiteTurn] = useState(true);
-
-  const handlePieceDrop = (sourceSquare: string, targetSquare: string) => {
-    const moveSuccess = onPieceDrop(sourceSquare, targetSquare);
-    if (moveSuccess) {
-      setIsWhiteTurn((prev) => !prev);
-    }
-    return moveSuccess;
-  };
-
+  // Use turn prop to determine rotation
   const rotatedPieces = Object.keys(customPieces).reduce(
     (acc: any, key: string) => {
       const PieceComponent = customPieces[key];
       acc[key] = (props: any) => (
-        <div className={isWhiteTurn ? "normal-piece" : "instant-rotated-piece"}>
+        <div
+          className={
+            turn === "white" ? "normal-piece" : "instant-rotated-piece"
+          }
+        >
           <PieceComponent {...props} />
         </div>
       );
@@ -43,9 +44,11 @@ const ChessBoard2: React.FC<ChessboardProps> = ({
       <div className="react-chessboard-wrapper-2">
         <ReactChessboard
           position={position}
-          onPieceDrop={handlePieceDrop}
+          onPieceDrop={onPieceDrop}
           boardOrientation="white" // Keep board fixed
           customPieces={rotatedPieces} // Apply rotation to pieces only
+          onSquareClick={onSquareClick}
+          customSquareStyles={customSquareStyles}
           customBoardStyle={{
             borderRadius: "5px",
             overflow: "hidden",

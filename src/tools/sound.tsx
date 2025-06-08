@@ -28,10 +28,14 @@ export function handleMoveSounds(game: any, move: any) {
   else if (move.flags.includes("k") || move.flags.includes("q"))
     playSound("castle"); // Castling
   else if (move.flags.includes("p")) playSound("promote"); // Promotion
-  else if (game.in_check && game.in_check()) playSound("moveCheck"); // Check
   else playSound("move"); // Regular move
 
-  if (game.isGameOver()) playSound("gameEnd"); // Game Over
+  // Play check sound if in check after move
+  if ((game.in_check && game.in_check()) || (game.inCheck && game.inCheck())) {
+    playSound("moveCheck");
+  }
+
+  if (game.isGameOver && game.isGameOver()) playSound("gameEnd"); // Game Over
 }
 
 export function playGameStartSound() {
