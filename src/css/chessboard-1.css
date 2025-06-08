@@ -2,10 +2,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    padding: 10px;
+    margin-top: 2rem;
     box-sizing: border-box;
-    border: 1px dashed #686868;
 }
 
 .react-chessboard-wrapper-1 {
@@ -28,5 +26,9 @@
 @media (max-width: 480px) {
     .react-chessboard-wrapper-1 {
         max-width: 100%;
+    }
+
+    .chessboard-container-1 {
+        margin-top: 40%;
     }
 }
