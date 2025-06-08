@@ -33,3 +33,31 @@
         margin-top: 40%;
     }
 }
+
+.analysis-arrows-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.5rem;
+    gap: 24px;
+}
+
+.analysis-arrow-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 2rem;
+    color: #333;
+    padding: 0;
+    transition: color 0.2s;
+}
+
+.analysis-arrow-btn:hover:not(.disabled) {
+    color: #1976d2;
+}
+
+.analysis-arrow-btn.disabled,
+.analysis-arrow-btn:disabled {
+    color: #ccc;
+    cursor: not-allowed;
+}
