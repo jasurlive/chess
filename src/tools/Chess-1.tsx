@@ -3,6 +3,7 @@ import Chessboard1 from "../pages/chessboard-1";
 import getCustomPieces from "./pieces";
 import { handleMoveSounds, playGameStartSound } from "./sound";
 import GameLogic from "./GameLogic";
+import { useClickMove } from "./Click";
 
 export default function ChessGame1() {
   const [gameLogic, setGameLogic] = useState(new GameLogic());
@@ -17,39 +18,29 @@ export default function ChessGame1() {
     playGameStartSound();
   }, []);
 
-  const onDrop = (sourceSquare: string, targetSquare: string) => {
-    const logic = new GameLogic(gameLogic.getFen());
-    const result = logic.move(sourceSquare, targetSquare, "q");
-
-    if (result.valid) {
-      setGameLogic(logic);
-      setFen(result.updatedFen);
-      setBoardOrientation((prev) => (prev === "white" ? "black" : "white"));
-      handleMoveSounds(logic.getInstance(), result.move);
-
-      const status = result.gameStatus;
-
-      if (status.isCheckmate) console.log("Checkmate!");
-      else if (status.isStalemate) console.log("Stalemate!");
-      else if (status.isThreefoldRepetition) console.log("Draw by repetition!");
-      else if (status.isFiftyMoveRule)
-        console.log("Draw by 50-move rule or insufficient material!");
-      else if (status.isCheck) console.log("Check!");
-
-      return true;
-    }
-
-    handleMoveSounds(logic.getInstance(), null);
-    return false;
-  };
+  const {
+    onDrop,
+    onSquareClick,
+    customSquareStyles,
+  } = useClickMove({
+    gameLogic,
+    setGameLogic,
+    boardOrientation,
+    setBoardOrientation,
+    fen,
+    setFen,
+    handleMoveSounds,
+  });
 
   return (
     <div>
       <Chessboard1
         position={fen}
         onPieceDrop={onDrop}
+        onSquareClick={onSquareClick}
         boardOrientation={boardOrientation}
         customPieces={customPieces}
+        customSquareStyles={customSquareStyles}
       />
     </div>
   );

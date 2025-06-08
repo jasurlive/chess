@@ -7,6 +7,8 @@ type ChessboardProps = {
   onPieceDrop: (sourceSquare: string, targetSquare: string) => boolean;
   boardOrientation: "white" | "black";
   customPieces: any;
+  onSquareClick?: (square: string) => void;
+  customSquareStyles?: Record<string, React.CSSProperties>;
 };
 
 const ChessBoard1: React.FC<ChessboardProps> = ({
@@ -14,6 +16,8 @@ const ChessBoard1: React.FC<ChessboardProps> = ({
   onPieceDrop,
   boardOrientation,
   customPieces,
+  onSquareClick,
+  customSquareStyles = {},
 }) => {
   return (
     <div className="chessboard-container-1">
@@ -23,6 +27,8 @@ const ChessBoard1: React.FC<ChessboardProps> = ({
           onPieceDrop={onPieceDrop}
           boardOrientation={boardOrientation}
           customPieces={customPieces}
+          onSquareClick={onSquareClick}
+          customSquareStyles={customSquareStyles}
           customBoardStyle={{
             borderRadius: "5px",
             overflow: "hidden",
