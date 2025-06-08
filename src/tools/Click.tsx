@@ -1,7 +1,6 @@
 import { useState } from "react";
-import Chessboard1 from "../pages/chessboard-1";
-import GameLogic from "./GameLogic";
 import getCustomPieces from "./pieces";
+import GameLogic from "./GameLogic";
 
 type ClickProps = {
   fen: string;
@@ -11,9 +10,11 @@ type ClickProps = {
   boardOrientation: "white" | "black";
   setBoardOrientation: (o: "white" | "black") => void;
   handleMoveSounds?: (game: any, move: any) => void;
+  ChessboardComponent: React.ComponentType<any>;
+  // Accept extra props for chessboard
+  [key: string]: any;
 };
 
-// This file is now a utility hook for click-to-move logic if you want to use it elsewhere
 export function useClickMove({
   gameLogic,
   setGameLogic,
@@ -22,7 +23,7 @@ export function useClickMove({
   fen,
   setFen,
   handleMoveSounds,
-}: ClickProps) {
+}: Omit<ClickProps, "ChessboardComponent">) {
   const [selectedSquare, setSelectedSquare] = useState<string | null>(null);
   const [possibleMoves, setPossibleMoves] = useState<string[]>([]);
   const customPieces = getCustomPieces();
@@ -102,38 +103,47 @@ export function useClickMove({
   };
 }
 
-export default function Click({
-  fen,
-  setFen,
-  gameLogic,
-  setGameLogic,
-  boardOrientation,
-  setBoardOrientation,
-}: ClickProps) {
+export default function Click(props: ClickProps) {
   const {
-    selectedSquare,
-    possibleMoves,
-    onDrop,
-    onSquareClick,
-    customPieces,
-    customSquareStyles,
-  } = useClickMove({
+    fen,
+    setFen,
     gameLogic,
     setGameLogic,
     boardOrientation,
     setBoardOrientation,
-    fen,
-    setFen,
-  });
+    handleMoveSounds,
+    ChessboardComponent,
+    ...rest
+  } = props;
+
+  const { onDrop, onSquareClick, customPieces, customSquareStyles } =
+    useClickMove({
+      fen,
+      setFen,
+      gameLogic,
+      setGameLogic,
+      boardOrientation,
+      setBoardOrientation,
+      handleMoveSounds,
+    });
+
+  // Get turn from gameLogic (assumes .getInstance().turn() returns "w" or "b")
+  let turn: "white" | "black" = "white";
+  try {
+    const t = gameLogic.getInstance().turn?.();
+    if (t === "b") turn = "black";
+  } catch {}
 
   return (
-    <Chessboard1
+    <ChessboardComponent
       position={fen}
       onPieceDrop={onDrop}
       onSquareClick={onSquareClick}
       boardOrientation={boardOrientation}
       customPieces={customPieces}
       customSquareStyles={customSquareStyles}
+      turn={turn}
+      {...rest}
     />
   );
 }

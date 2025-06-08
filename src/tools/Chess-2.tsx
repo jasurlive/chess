@@ -1,41 +1,30 @@
 import { useEffect, useState } from "react";
-import { Chess } from "chess.js";
 import Chessboard2 from "../pages/chessboard-2";
 import getCustomPieces from "./pieces";
 import { handleMoveSounds, playGameStartSound } from "./sound";
+import GameLogic from "./GameLogic";
+import Click from "./Click";
 
 export default function ChessGame2() {
-  const [game, setGame] = useState(new Chess());
-  const [fen, setFen] = useState(game.fen());
-  const customPieces = getCustomPieces();
+  const [gameLogic, setGameLogic] = useState(new GameLogic());
+  const [fen, setFen] = useState(gameLogic.getFen());
 
   useEffect(() => {
-    setFen(game.fen());
+    setFen(gameLogic.getFen());
     playGameStartSound();
   }, []);
 
-  const onDrop = (sourceSquare: string, targetSquare: string) => {
-    const newGame = new Chess(game.fen());
-    const move = newGame.move({ from: sourceSquare, to: targetSquare });
-
-    if (move) {
-      setGame(newGame);
-      setFen(newGame.fen());
-      handleMoveSounds(newGame, move);
-      return true;
-    }
-
-    handleMoveSounds(newGame, null);
-    return false;
-  };
-
   return (
     <div>
-      <Chessboard2
-        position={fen}
-        onPieceDrop={onDrop}
+      <Click
+        ChessboardComponent={Chessboard2}
+        fen={fen}
+        setFen={setFen}
+        gameLogic={gameLogic}
+        setGameLogic={setGameLogic}
         boardOrientation="white"
-        customPieces={customPieces}
+        setBoardOrientation={() => {}}
+        handleMoveSounds={handleMoveSounds}
       />
     </div>
   );

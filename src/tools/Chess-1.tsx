@@ -3,7 +3,7 @@ import Chessboard1 from "../pages/chessboard-1";
 import getCustomPieces from "./pieces";
 import { handleMoveSounds, playGameStartSound } from "./sound";
 import GameLogic from "./GameLogic";
-import { useClickMove } from "./Click";
+import Click from "./Click";
 
 export default function ChessGame1() {
   const [gameLogic, setGameLogic] = useState(new GameLogic());
@@ -18,29 +18,17 @@ export default function ChessGame1() {
     playGameStartSound();
   }, []);
 
-  const {
-    onDrop,
-    onSquareClick,
-    customSquareStyles,
-  } = useClickMove({
-    gameLogic,
-    setGameLogic,
-    boardOrientation,
-    setBoardOrientation,
-    fen,
-    setFen,
-    handleMoveSounds,
-  });
-
   return (
     <div>
-      <Chessboard1
-        position={fen}
-        onPieceDrop={onDrop}
-        onSquareClick={onSquareClick}
+      <Click
+        ChessboardComponent={Chessboard1}
+        fen={fen}
+        setFen={setFen}
+        gameLogic={gameLogic}
+        setGameLogic={setGameLogic}
         boardOrientation={boardOrientation}
-        customPieces={customPieces}
-        customSquareStyles={customSquareStyles}
+        setBoardOrientation={setBoardOrientation}
+        handleMoveSounds={handleMoveSounds}
       />
     </div>
   );
