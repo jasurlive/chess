@@ -1,6 +1,7 @@
 import { useState } from "react";
 import getCustomPieces from "./pieces";
 import GameLogic from "./GameLogic";
+import { handleMoveSounds } from "./sound"; // <-- Import here
 
 type ClickProps = {
   fen: string;
@@ -9,7 +10,6 @@ type ClickProps = {
   setGameLogic: (logic: GameLogic) => void;
   boardOrientation: "white" | "black";
   setBoardOrientation: (o: "white" | "black") => void;
-  handleMoveSounds?: (game: any, move: any) => void;
   ChessboardComponent: React.ComponentType<any>;
   // Accept extra props for chessboard
   [key: string]: any;
@@ -22,7 +22,6 @@ export function useClickMove({
   setBoardOrientation,
   fen,
   setFen,
-  handleMoveSounds,
 }: Omit<ClickProps, "ChessboardComponent">) {
   const [selectedSquare, setSelectedSquare] = useState<string | null>(null);
   const [possibleMoves, setPossibleMoves] = useState<string[]>([]);
@@ -36,14 +35,13 @@ export function useClickMove({
       setGameLogic(logic);
       setFen(result.updatedFen);
       setBoardOrientation(boardOrientation === "white" ? "black" : "white");
-      if (handleMoveSounds) handleMoveSounds(logic.getInstance(), result.move);
-
+      handleMoveSounds(logic.getInstance(), result.move); // Always play sound
       setSelectedSquare(null);
       setPossibleMoves([]);
       return true;
     }
 
-    if (handleMoveSounds) handleMoveSounds(logic.getInstance(), null);
+    handleMoveSounds(logic.getInstance(), null); // Play error sound
     setSelectedSquare(null);
     setPossibleMoves([]);
     return false;
@@ -111,7 +109,6 @@ export default function Click(props: ClickProps) {
     setGameLogic,
     boardOrientation,
     setBoardOrientation,
-    handleMoveSounds,
     ChessboardComponent,
     ...rest
   } = props;
@@ -124,7 +121,6 @@ export default function Click(props: ClickProps) {
       setGameLogic,
       boardOrientation,
       setBoardOrientation,
-      handleMoveSounds,
     });
 
   // Get turn from gameLogic (assumes .getInstance().turn() returns "w" or "b")
