@@ -1,5 +1,7 @@
 # uzchess
 
+<img width="1918" height="876" alt="image" src="https://github.com/user-attachments/assets/a61e2a99-a02c-401a-9710-255e479b385c" />
+
 ## yes, another chess app
 
 ---
