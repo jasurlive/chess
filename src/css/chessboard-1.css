@@ -1,0 +1,34 @@
+.chessboard-container-1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+    box-sizing: border-box;
+}
+
+.react-chessboard-wrapper-1 {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #8cbeff;
+    border-radius: 5px;
+}
+
+@media (min-width: 481px) {
+    .react-chessboard-wrapper-1 {
+        max-width: 500px;
+        height: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .react-chessboard-wrapper-1 {
+        max-width: 100%;
+    }
+
+    .chessboard-container-1 {
+        margin-top: 40%;
+    }
+}
