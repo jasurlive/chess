@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import "../css/home.css";
+import { FaChess, FaMagnifyingGlassChart, FaWifi } from "react-icons/fa6";
+import { SiChessdotcom } from "react-icons/si";
 
 export default function HomePage() {
   return (
@@ -10,22 +12,22 @@ export default function HomePage() {
       <ul className="links-container-home">
         <li className="links-grid-home">
           <Link to="/chess-1" className="link-item-home">
-            Chess 1 Side
+          <SiChessdotcom />  Chess 1 Side
           </Link>
         </li>
         <li className="links-grid-home">
           <Link to="/chess-analysis" className="link-item-home">
-            Analysis
+          <FaMagnifyingGlassChart />  Analysis
           </Link>
         </li>
         <li className="links-grid-home">
           <Link to="/chess-2" className="link-item-home">
-            Chess 2 Side
+          <FaChess />  Chess 2 Side
           </Link>
         </li>
         <li className="links-grid-home">
           <Link to="/chess-online" className="link-item-home">
-            Chess Online
+          <FaWifi />  Chess Online
           </Link>
         </li>
       </ul>
