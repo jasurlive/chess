@@ -1,0 +1,43 @@
+.chessboard-container-2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 2rem;
+  box-sizing: border-box;
+}
+
+.react-chessboard-wrapper-2 {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #8cbeff;
+  border-radius: 5px;
+}
+
+.normal-piece {
+  transform: rotate(0deg);
+}
+
+.instant-rotated-piece {
+  transform: rotate(180deg);
+}
+
+@media (min-width: 481px) {
+  .react-chessboard-wrapper-2 {
+    max-width: 500px;
+    height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .react-chessboard-wrapper-2 {
+    max-width: 100%;
+  }
+
+  .chessboard-container-2 {
+    margin-top: 40%;
+  }
+}
