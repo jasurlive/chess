@@ -2,6 +2,9 @@
 
 <img width="1918" height="876" alt="image" src="https://github.com/user-attachments/assets/a61e2a99-a02c-401a-9710-255e479b385c" />
 
+<img width="1920" height="870" alt="image" src="https://github.com/user-attachments/assets/b7b92ea8-df51-463f-93f3-fafd134afce2" />
+
+
 ## yes, another chess app
 
 ---
