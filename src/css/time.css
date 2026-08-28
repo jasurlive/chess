@@ -1,0 +1,32 @@
+.time-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.time-select {
+  padding: 0.3rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.time-clocks {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 0.4rem;
+}
+
+.clock {
+  padding: 0.4rem;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  font-size: 1.1rem;
+  border-radius: 4px;
+  background: #eee;
+  color: #333;
+}
+
+.clock.active {
+  background: #1c4777;
+  color: #fff;
+}
