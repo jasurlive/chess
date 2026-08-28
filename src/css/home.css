@@ -12,6 +12,8 @@
     padding: 1rem;
     text-align: center;
     font-size: 2rem;
+    gap: 1rem;
+    vertical-align: baseline;
 }
 
 .header-home a {
