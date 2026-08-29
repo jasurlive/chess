@@ -16,9 +16,10 @@
   flex: 1;
   font-weight: 450;
   list-style-type: none;
+  cursor: pointer;
 }
 
-.dom-menu-item a {
+.dom-menu-item a, .dom-menu-toggle {
   text-decoration: none;
   color: #1c4777;
   transition: background-color 0.3s ease-in, border-color 0.3s ease;
@@ -33,12 +34,12 @@
   backdrop-filter: blur(0.8rem);
 }
 
-.dom-menu-item a:hover {
+.dom-menu-item a:hover, .dom-menu-toggle:hover {
   background: linear-gradient(to right, #598dc7, #7fb0e1);
   color: white;
 }
 
-.dom-menu-icon {
+.dom-menu-icon, .dom-menu-toggle svg {
   width: 1.5rem;
   height: auto;
   margin-bottom: 0.5rem;

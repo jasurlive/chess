@@ -8,6 +8,11 @@ import Home from "../pages/Home";
 import "../css/dom-menu.css";
 import "../css/App.css";
 
+import { useFullscreen } from "../hooks/fullscreen";
+import { FaCompress, FaExpand } from "react-icons/fa6";
+
+
+
 function ChessOnline() {
   return (
     <div className="dom-menu-general-div">Oops! Still under development...</div>
@@ -15,6 +20,9 @@ function ChessOnline() {
 }
 
 export default function App() {
+
+  const { isFullscreen, toggleFullscreen } = useFullscreen();
+
   return (
     <Router>
       <div className="app-layout">
@@ -50,10 +58,11 @@ export default function App() {
                 <FaChessKing className="dom-menu-icon" /> Chess 2 Side
               </Link>
             </li>
-            <li className="dom-menu-item">
-              <Link to="/chess-online">
-                <FaGlobe className="dom-menu-icon" /> Chess Online
-              </Link>
+            <li className="dom-menu-item" onClick={toggleFullscreen}>
+              <div className="dom-menu-toggle">
+                {isFullscreen ? <FaCompress /> : <FaExpand />}
+                {isFullscreen ? "Exit Full Screen" : "Full Screen"}
+              </div>
             </li>
           </ul>
         </nav>
