@@ -18,6 +18,8 @@ export default function Time({ turn, onFlag }: TimeProps) {
   const [seconds, setSeconds] = useState(TIME_CONTROLS[1].seconds);
   const [white, setWhite] = useState(seconds);
   const [black, setBlack] = useState(seconds);
+  const [started, setStarted] = useState(false);
+  const [start, setStart] = useState("Start the game!")
 
   const reset = (s: number) => {
     setSeconds(s);
@@ -25,7 +27,7 @@ export default function Time({ turn, onFlag }: TimeProps) {
     setBlack(s);
   };
 
-  const running = seconds > 0 && white > 0 && black > 0;
+  const running = started && seconds > 0 && white > 0 && black > 0;
 
   useEffect(() => {
     if (!running) return;
@@ -47,6 +49,16 @@ export default function Time({ turn, onFlag }: TimeProps) {
 
   return (
     <div className="time-panel">
+      <button
+        className={started ? "start-button-off" : "start-button-on"}
+        onClick={() => {
+          setStarted(true);
+          setStart("Game is on!");
+        }}
+        disabled={started}
+      >
+        {start}
+      </button>
       <select
         className="time-select"
         value={seconds}
@@ -60,8 +72,12 @@ export default function Time({ turn, onFlag }: TimeProps) {
       </select>
       {seconds > 0 && (
         <div className="time-clocks">
-          <div className={`clock ${turn === "black" ? "active" : ""}`}>{format(black)}</div>
-          <div className={`clock ${turn === "white" ? "active" : ""}`}>{format(white)}</div>
+          <div className={`clock ${turn === "black" ? "active" : ""}`}>
+            {format(black)}
+          </div>
+          <div className={`clock ${turn === "white" ? "active" : ""}`}>
+            {format(white)}
+          </div>
         </div>
       )}
     </div>
