@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div className="home-page">
       <header className="header-home">
-        <Link to="/">uzChess.vercel.app</Link>
+      <Link to="/"><SiChessdotcom />uzChess.vercel.app</Link>
       </header>
       <ul className="links-container-home">
         <li className="links-grid-home">
