@@ -6,7 +6,7 @@
 
 ## mobile view:
 
-<img width="320" height="640" alt="image" src="https://github.com/user-attachments/assets/dd137991-416a-4418-8c52-f290de7df740" />
+<img width="320" alt="image" src="https://github.com/user-attachments/assets/dd137991-416a-4418-8c52-f290de7df740" />
 
 
 ## yes, another chess app
