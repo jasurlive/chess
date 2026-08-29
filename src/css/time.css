@@ -30,3 +30,23 @@
   background: #1c4777;
   color: #fff;
 }
+
+.start-button-on {
+  background: #1c4777;
+  color: #eee;
+  padding: 8px 15px;
+  border-radius: 10px;
+}
+
+.start-button-on:hover {
+  transform: translateY(-3px);
+  transition: ease-in 0.2s;
+  cursor: pointer;
+}
+
+.start-button-off {
+  background: #1c4777;
+  color: #eeeeeea8;
+  padding: 8px 15px;
+  border-radius: 10px;
+}
