@@ -61,7 +61,7 @@ export default function App() {
             <li className="dom-menu-item" onClick={toggleFullscreen}>
               <div className="dom-menu-toggle">
                 {isFullscreen ? <FaCompress /> : <FaExpand />}
-                {isFullscreen ? "Exit Full Screen" : "Full Screen"}
+                {isFullscreen ? "Exit" : "Full"}
               </div>
             </li>
           </ul>
