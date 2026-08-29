@@ -36,6 +36,7 @@
     grid-template-columns: repeat(2, 1fr);
     align-items: center;
     justify-content: center;
+    margin: auto 0;
 }
 
 .links-grid-home {
