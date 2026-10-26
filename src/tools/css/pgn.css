@@ -5,7 +5,7 @@
   min-height: 0;
   border: 1px solid var(--border);
   border-radius: 8px;
-  background: var(--surface);
+  background: var(--bg-elev);
 }
 
 .pgn-list {
@@ -23,7 +23,7 @@
 }
 
 .pgn-row:nth-child(odd) {
-  background: color-mix(in srgb, var(--text) 4%, transparent);
+  background: var(--hover);
 }
 
 .pgn-empty {

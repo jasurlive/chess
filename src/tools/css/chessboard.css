@@ -1,7 +1,8 @@
 :root {
-  --square-light: #ededd1;
-  --square-dark: #779556;
-  --square-selected: #f6f68a;
+  /* blue board to match the theme */
+  --square-light: #e3eaf6;
+  --square-dark: #7d9ccb;
+  --square-selected: #f5e27a;
 }
 
 .chessboard-wrapper {
@@ -9,7 +10,7 @@
   aspect-ratio: 1 / 1;
   border-radius: 6px;
   overflow: hidden;
-  box-shadow: 0 4px 24px rgb(0 0 0 / 0.18);
+  box-shadow: var(--shadow);
 }
 
 .chessboard {
