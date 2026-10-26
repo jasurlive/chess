@@ -13,7 +13,8 @@
 
 * play chess locally
 * two board modes
-* analysis board
+* analysis board (arrow keys to step through moves, `F` to flip)
+* check / checkmate / draw detection
 * works offline after load
 * clean minimalistic ui
 
@@ -21,9 +22,10 @@
 
 ## stack
 
-* react
-* typescript
-* vite
+* react 19 + typescript
+* vite 8, react router
+* chess.js for the rules
+* built on the [django-react](https://github.com/jasurlive/django-react) front template (sidebar menu, light/dark theme with `Ctrl+J`)
 
 ---
 
@@ -33,8 +35,10 @@
 git clone https://github.com/jasurlive/chess.git
 cd chess
 npm install
-npm run dev
+npm run dev          # http://localhost:1212
 ```
+
+needs node 20.19+ or 22.12+. `npm run build` puts the site in `dist/`.
 
 ---
 
@@ -42,11 +46,15 @@ npm run dev
 
 ```
 src/
-  assets/
-  css/
-  pages/
-  react/
-  tools/
+├── ts/                 entry: main.tsx, App.tsx (routes)
+└── tools/
+    ├── pages/          Home, Chess1, Chess2, Analysis, Online, NotFound
+    ├── components/     Layout, Chessboard, PGN, Time, GameStatus
+    ├── shared/         Menu (sidebar / mobile bar)
+    ├── hooks/LOCAL/    click-to-move, fullscreen, theme, shortcuts
+    ├── lib/            game logic (chess.js), sounds
+    └── css/
+public/assets/          piece images and sounds
 ```
 
 simple, minimal

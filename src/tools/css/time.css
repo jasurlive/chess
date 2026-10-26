@@ -1,0 +1,74 @@
+.time-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.time-start {
+  font-weight: 600;
+}
+
+.time-select {
+  padding: 0.35rem 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+}
+
+.time-clocks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.clock {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+  font-size: 1.3rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.clock span {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.clock.active {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.clock.active span {
+  color: inherit;
+}
+
+.clock.flag {
+  border-color: var(--danger);
+  background: var(--danger);
+  color: var(--bg);
+}
+
+@media (max-width: 768px) {
+  .time-panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .time-clocks {
+    grid-column: 1 / -1;
+    flex-direction: row;
+  }
+
+  .clock {
+    flex: 1;
+    font-size: 1.05rem;
+  }
+}

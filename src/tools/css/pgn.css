@@ -1,0 +1,56 @@
+.pgn-panel {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.pgn-list {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 0.5rem;
+}
+
+.pgn-row {
+  display: grid;
+  grid-template-columns: 2rem 1fr 1fr;
+  font-size: 0.9rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.pgn-row:nth-child(odd) {
+  background: color-mix(in srgb, var(--text) 4%, transparent);
+}
+
+.pgn-empty {
+  padding: 0.25rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.pgn-move-number {
+  padding: 0.15rem 0.25rem;
+  color: var(--muted);
+}
+
+.pgn-move {
+  padding: 0.15rem 0.35rem;
+  border-radius: 4px;
+}
+
+.pgn-current {
+  background: color-mix(in srgb, var(--accent) 22%, transparent);
+  font-weight: 600;
+}
+
+.pgn-save-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  margin: 0.5rem;
+}
